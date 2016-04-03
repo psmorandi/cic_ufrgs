@@ -1,0 +1,58 @@
+<html><head>
+<meta http-equiv="Content-Language" content="pt-br">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head>
+
+<body>
+
+<h4 align="center"><font face="Tahoma">Universidade Federal do Rio Grande do Sul<br>
+Instituto de Informática - Departamento de Informática Aplicada<br>
+INF01002 - Protocolos de Comunicação<br>
+Professor: Lisando Granville</font></h4>
+<p align="left"><font face="Tahoma"><b>Alunos: </b>Andre Suslik Spritzer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Paulo 
+Sérgio Morandi Júnior</font></p>
+<h1 align="center"><font face="Tahoma">Trabalho 2: Descoberta da rede via 
+mensagens ICMP usando WebServices</font></h1>
+<h2 align="left"><font face="Tahoma">Introdução</font></h2>
+<p align="left"><font face="Tahoma">O trabalho desenvolvido consiste em uma 
+aplicação que faz a determinação dos computadores ativos de uma rede local remotamente através de 
+um webservice instalado na rede. O webservice executa o programa ping do trabalho anterior e manda
+a resposta para o computador requerente (cliente), que a exibe.</font></p>
+<h2><font face="Tahoma">Código Fonte</font></h2>
+<p><font face="Tahoma">O trabalho foi desenvolvido em PHP 
+Ele pode ser obtido clicando <a href="http://www.inf.ufrgs.br/~sergio/trabalhos/protocolos/trab2/trab2.tar.gz">aqui</a>.</font></p>
+<h2><font face="Tahoma">Funcionamento da Aplicação</font></h2>
+<p><font face="Tahoma"> O cliente requisita ao servidor a execução do programa ping (feita no trabalho 1),
+o qual, por sua vez, envia a resposta do ping pré-formatada para o cliente, que à exibe para ao usuário.
+<font></p>
+<h2><font face="Tahoma">Projeto da Implementação</font></h2>
+<p><font face="Tahoma">As principais funções da aplicação trab2_server.php são:</font></p>
+<p><font face="Tahoma"><b>ping.</b> Executa o ping broadcast.<font></p>
+<p><font face="Tahoma"><b>$servidor->register('ping')</b>Registra o ping no servidor, ou seja, deixa essa 
+função visível para ser acessada remotamente pelo cliente.<font></p>
+<br>
+<p><font face="Tahoma">A principal função da aplicação trab2_client.php é:<font></p>
+<p><font face="Tahoma"><b>$soapclient->call('ping').</b> Colocada no cliente (trab2_client.php) serve para chamar a função
+ping que está no servidor (trab2_server.php).</font></p>
+
+<h2><font face="Tahoma">Dificuldades Encontradas</font></h2>
+<p><font face="Tahoma">Não foram encontradas grandes dificuldades no 
+desenvolvimento do trabalho. Entretanto, tivemos alguns problemas para 
+depurar o código; muitas vezes erros de sintaxe não eram reportados pelo php (como de fato deve 
+acontecer) e isso dificultava a determinação de onde exatamente estava o problema.</font></p>
+
+<h2><font face="Tahoma">Conclusão</font></h2>
+<p><font face="Tahoma">A técnica utilizada neste trabalho é uma forma bastante 
+eficiente de fazer a descoberta dos computadores que estão em uma rede local sem a necessidade de estar
+fisicamente no local (desde que esteja previamente instalado o suporte - apache, php, nusoap...).. 
+Sua implementação é relativamente simples e a execução é rápida.</font></p>
+<h2><font face="Tahoma">Bibiliografia Utilizada</font></h2>
+<ul>
+	<li>
+	<p class="MsoNormal"><span style="font-family: MS Sans Serif; color: black;">
+	Tutorial PHP: </span><u>
+	<span style="font-family: MS Sans Serif; color: blue;">
+	<a style="color: blue; text-decoration: underline;" href="http://www.php.net">
+	http://www.php.net</a></span></u>
+	</p></li>
+</body></html>

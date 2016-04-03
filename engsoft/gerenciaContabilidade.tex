@@ -1,0 +1,1011 @@
+\documentclass[TC,a4paper]{iiufrgs}
+\usepackage[T1]{fontenc}        % pacote para conj. de caracteres correto
+\usepackage[latin1]{inputenc}   % pacote para acentuação
+\usepackage{graphicx}           % pacote para importar figuras
+\usepackage{times}              % pacote para usar fonte Adobe Times
+
+%
+% Informações gerais
+%
+\title{Sistema de Contas a Pagar/Receber}
+
+\author{Pedrini}{Mairo}
+\author{Zembrzuski}{Marcelo Claro}
+\author{Morandi Júnior}{Paulo Sérgio}
+\author{Carvalho}{Priscilla Kurtz Vieira de}
+
+% orientador e co-orientador são opcionais (não diga isso pra eles :))
+\advisor[Prof.]{Zirbes}{Sérgio Felipe}
+
+\course{\cbcc}
+
+\dept{INA}
+% departamento relacionado
+
+\hyphenation{En-ge-nha-ria en-ge-nha-ria u-sa-bi-li-da-de}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+~~~~~~~~~~ ~~~~~~~ ~~~~~~~
+\clearpage
+
+% sumario
+\tableofcontents
+
+\linespread{1.5}
+
+\chapter{Introdução}
+A presente monografia apresenta o resultado final do trabalho da disciplina de
+Engenharia de Software, que consiste da especificação de um sistema utilizando
+as técnicas de Análise e
+Projeto Orientados a Objeto (APOO) e a notação UML (Unified Modeling Language),
+técnicas aprendidas ao longo do semestre
+sob a coordenação do professor Sérgio Felipe Zirbes.
+
+Um dos objetivos da disciplina - e do trabalho - é estimular o envolvimento dos alunos com um
+projeto real,
+aumentando o contato e a interatividade destes com usuários, também reais.
+
+Apresentaremos a especificação de um sistema de contas a pagar/receber e
+controle de fluxo de caixa, totalmente realizada por nós,
+junto com os resultados de cada etapa do trabalho, descrevendo as dificuldades
+e soluções encontradas e, ao final, as conclusões sobre o mesmo.
+
+\chapter{Motivação}
+Depois de uma pesquisa entre os conhecidos dos membros do grupo, encontramos um usuário que
+tinha, em mãos, um sistema que precisava, claramente, de automatização.
+Nosso cliente jurídico é a {\it Install Service - Serviços de Cabeamento
+LTDA.} e as entrevistas foram todas realizadas com Márcia Schlatter Carvalho.
+Nosso usuário sugeriu a construção de um sistema de gerenciamento de contas a
+pagar/receber.
+
+A principal motivação para a construção deste trabalho decorre do fato de que todo o gerenciamento de contas
+realizado na {\it Install Service} é realizado à ``mão'' e em papel.
+Esse processo, quando realizado dessa maneira, é muito propenso a erros, os
+quais possuem difícil rastreamento. A pesquisa de dados também é bastante
+afetada, pois os extensos relatórios são escritos, impressos e arquivados.
+Uma busca dispende muito tempo e envolve a localização física de documentos.
+
+A proposta inicial foi a especificação de um sistema que
+automatizasse, além dos processos já descritos, a movimentação bancária.
+O sistema, também, deve ser capaz de guardar todas as
+informações sobre essas movimentações, permitindo rápido acesso e emissão de
+diversos tipos de relatórios.
+
+Caso esse sistema seja realmente implementado  - a implementação não faz parte
+do escopo da disciplina -
+espera-se que ele reduza significativamente as falhas no gerenciamento da
+empresa, dentro do que o sistema se propõe a fazer.
+
+
+\chapter{Metodologia e Ferramentas Utilizadas}
+A metodologia utilizada para especificar o sistema requisitado
+foi Análise e Projeto Orientado a Objetos, a notação padronizada UML e uma ferramenta CASE
+para confecção gráfica dos diagramas.
+
+A notação UML nos fornece vários artefatos que ajudam a estabelecer o senso comum entre
+analistas e usuários/gerentes sobre o que será feito no sistema, através de diagramas que chegam
+muito perto de como este deve ser implementado. Vale lembrar que somente a UML não é suficiente
+para se especificar um projeto, é necessário utilizar a APOO e algumas regras de projeto.
+
+Foram pesquisadas três ferramentas de
+modelagem UML: \emph{Poseidon, Argo-UML, JUDE}. Todas são de
+distribuição livre (\emph{free}) e a escolhida, como ferramenta final, foi {\it JUDE} -
+{\it Java and UML Developer's Environment}, pois é a mais completa e que menos força a máquina
+computacionalmente. JUDE mostrou ter uma boa interface gráfica e usabilidade, tem todos os
+diagramas requeridos pela especificação
+do trabalho e o tamanho do código-fonte descompactado é bastante pequeno.
+
+\chapter{Entrevistas com o Usuário}
+Foram realizadas algumas entrevistas com o usuário e ao final de cada uma, era feita uma conversa entre os elementos do grupo para efetuarmos uma refinada no diálogo com o usuário e o colocarmos
+em termos do Glossário.
+
+Nosso usuário se mostrava bastante disposto a nos explicar o sistema - atual - e demonstrou algum conhecimento
+em UML, facilitando (e por vezes, dificultando) nosso trabalho. Facilitando em termos de mostrar um Diagrama de Caso de Uso
+Expandido e ele criticar, opinar ou concordar com ele. Não foi preciso usar uma linguagem muito
+``mastigada''. E dificultou
+pois, às vezes, os comentários iam muito além da especificação, indo em termos de implementação.
+
+Aqui são apresentadas as atas e os principais tópicos discutidos em cada uma delas.
+\clearpage
+{\bf Primeira Reunião:}
+
+\begin{verbatim}
+                  Apresentações usuário-analistas;
+                  Visão geral do sistema;
+\end{verbatim}
+
+\underline{Data:} 10/05/2004
+
+\underline{Participantes:}
+
+\begin{verbatim}
+              Márcia Schlatter Carvalho
+              Mairo Pedrini
+              Marcelo Claro Zembrzuski
+              Paulo Sérgio Morandi Júnior
+              Priscilla Kurtz Carvalho
+\end{verbatim}
+
+\underline{Duração:} 1 hora
+
+\underline{Pauta:}:
+
+\begin{verbatim}
+    Apresentação do integrantes do grupo ao usuários debate
+    geral sobre os requisitos do sistema;
+    Visão geral do sistema;
+\end{verbatim}
+
+\clearpage
+
+{\bf Segunda Reunião:}
+
+\begin{verbatim}
+                  Coleta de dados para construção do DHF
+\end{verbatim}
+
+\underline{Data:} 17/05/2004
+
+\underline{Participantes:}
+
+\begin{verbatim}
+              Márcia Schlatter Carvalho
+              Mairo Pedrini
+              Marcelo Claro Zembrzuski
+              Paulo Sérgio Morandi Júnior
+              Priscilla Kurtz Carvalho
+\end{verbatim}
+
+\underline{Duração:} 2 horas
+
+\underline{Pauta:}:
+
+\begin{verbatim}
+    Análise de requisitos;
+    Coleta de dados sobre as principais funcionalidades que o
+    sistema deveria oferecer (subsídios para construção do DHF);
+\end{verbatim}
+
+\clearpage
+
+{\bf Terceira Reunião:}
+
+\begin{verbatim}
+                  Refinamento do DHF
+\end{verbatim}
+
+\underline{Data:} 24/05/2004
+
+\underline{Participantes:}
+
+\begin{verbatim}
+              Márcia Schlatter Carvalho
+              Mairo Pedrini
+              Marcelo Claro Zembrzuski
+              Paulo Sérgio Morandi Júnior
+              Priscilla Kurtz Carvalho
+\end{verbatim}
+
+\underline{Duração:} 1  hora
+
+\underline{Pauta:}:
+
+\begin{verbatim}
+    Apresentação do DHF ao usuário;
+    Inclusão de 2 novas funções no sistema;
+    Refinamento geral do DHF;
+\end{verbatim}
+
+\clearpage
+
+{\bf Quarta Reunião:}
+
+\begin{verbatim}
+                Construção dos casos de uso;
+\end{verbatim}
+
+\underline{Data:} 31/05/2004
+
+\underline{Participantes:}
+
+\begin{verbatim}
+              Márcia Schlatter Carvalho
+              Mairo Pedrini
+              Marcelo Claro Zembrzuski
+              Paulo Sérgio Morandi Júnior
+              Priscilla Kurtz Carvalho
+\end{verbatim}
+
+\underline{Duração:} 2h 30min
+
+\underline{Pauta:}
+
+\begin{verbatim}
+    Nova apresentação do DHF (agora modificado);
+    Descrição narrativa, pelo usuário, das funções do sistema 
+    que constam no DHF;
+\end{verbatim}
+
+\clearpage
+
+{\bf Quinta Reunão:}
+
+\begin{verbatim}
+               Apresentação dos casos de uso;
+\end{verbatim}
+
+\underline{Data:} 07/06/2004
+
+\underline{Participantes:}
+
+\begin{verbatim}
+              Márcia Schlatter Carvalho
+              Mairo Pedrini
+              Marcelo Claro Zembrzuski
+              Paulo Sérgio Morandi Júnior
+              Priscilla Kurtz Carvalho
+\end{verbatim}
+
+\underline{Duração:} 1 hora
+
+\underline{Pauta:}
+
+\begin{verbatim}
+    Apresentação dos use-cases;
+    Modificações solicitadas ficações solicitadas pelo usuário;
+    Análise de requisitos para a construção do Diagrama Conceitual;
+\end{verbatim}
+
+\clearpage
+
+{\bf Sexta Reunião:}
+
+\begin{verbatim}
+               Apresentação do Diagrama Conceitual;
+\end{verbatim}
+
+\underline{Data:} 14/06/2004
+
+\underline{Participantes:}
+
+\begin{verbatim}
+              Márcia Schlatter Carvalho
+              Mairo Pedrini
+              Marcelo Claro Zembrzuski
+              Paulo Sérgio Morandi Júnior
+              Priscilla Kurtz Carvalho
+\end{verbatim}
+
+\underline{Duração:} 1 hora
+
+\underline{Pauta:}
+
+\begin{verbatim}
+    Revisão do Diagrama Conceitual;
+\end{verbatim}
+
+\clearpage
+
+{\bf Sétima Reunião:}
+
+\begin{verbatim}
+               Refinamento geral do sistema
+\end{verbatim}
+
+\underline{Data:} 21/06/2004
+
+\underline{Participantes:}
+
+\begin{verbatim}
+              Márcia Schlatter Carvalho
+              Mairo Pedrini
+              Marcelo Claro Zembrzuski
+              Paulo Sérgio Morandi Júnior
+              Priscilla Kurtz Carvalho
+\end{verbatim}
+
+\underline{Duração:} 1 hora
+
+\underline{Pauta:}
+
+\begin{verbatim}
+    Apresentação final do Diagrama Conceitual
+    Refinamento Geral do Sistema
+\end{verbatim}
+
+\chapter{Diagrama Hierárquico de Função}
+
+No Diagrama Hierárquico de Função, ou simplesmente DHF, detalha-se as funções de mais alto nível que
+o sistema deverá implementar e que serão detalhadas ao longo do projeto. Com o DHF, descreve-se o que
+deve ser feito pelo sistemas de maneira hierárquica, organizada e clara e foi construído a partir
+da análise dos requistos obtidos nas primeiras reuniões com o usuário.
+
+Abaixo descreve-se o diagrama para o sistema em questão.
+
+\begin{tabular}{p{0.77\textwidth} p{0.05\textwidth}}
+R1 Cadastrar & \\
+\hspace*{1cm}R1.1 Cadastrar Usuário 				& \\
+\hspace*{2cm}R1.1.1 Dados básicos do usuário			&		(Evidente)\\
+\hspace*{2cm}R1.1.2 Privilégios de usuário			&		(Evidente)\\
+\hspace*{1cm}R1.2 Cadastrar Fornecedor 				& 		 \\
+\hspace*{2cm}R1.2.1 Dados básicos do fornecedor 		&		(Evidente)\\
+\hspace*{1cm}R1.3 Cadastrar Cliente 				&\\
+\hspace*{2cm}R1.3.1 Dados básicos do cliente			&		(Evidente)\\
+\hspace*{1cm}R1.4 Cadastrar Banco 				& \\
+\hspace*{2cm}R1.4.1 Dados básicos do banco			&		(Evidente)
+\end{tabular}
+
+\begin{tabular}{p{0.77\textwidth} p{0.05\textwidth}}
+R2 Registrar							&\\
+\hspace*{1cm}R2.1 Conta						&\\
+\hspace*{2cm}R2.1.1 Dados básicos da conta			&		(Evidente)\\
+\hspace*{2cm}R2.1.2 Tipo de conta				&		(Evidente)\\
+\hspace*{1cm}R2.2 Pagamentos					&\\
+\hspace*{2cm}R2.2.1 Dados básicos do pagamento			&		(Evidente)\\
+\hspace*{2cm}R2.2.2 Tipo de pagamento				&		(Evidente)\\
+\hspace*{2cm}R2.2.3 Cálculo de multa, descontos e afins		&		(Oculto)\\
+\hspace*{1cm}R2.3 Recebimentos					&\\
+\hspace*{2cm}R2.3.1 Dados básicos dos recebimentos		&		(Evidente)\\
+\hspace*{2cm}R2.3.2 Tipo de recebimento				&		(Evidente)\\
+\hspace*{2cm}R2.3.3 Cálculo de multa, descontos e afins		&		(Oculto)\\
+\hspace*{1cm}R2.4 Movimentação					&\\
+\hspace*{2cm}R2.4.1 Creditar Conta Bancária			&		(Evidente)\\
+\hspace*{2cm}R2.4.2 Debitar Conta Bancária			&		(Evidente)\\
+\hspace*{2cm}R2.4.3 Creditar Caixa				&		(Evidente)\\
+\hspace*{2cm}R2.4.4 Debitar Caixa				&		(Evidente)\\
+
+R3 Controlar Fluxo de Caixa					&\\
+\hspace*{1cm}R3.1 Atualizar caixa				&\\
+\hspace*{2cm}R3.1.1 Obter e calcular saldo bancário		&		(Oculto)\\
+\hspace*{2cm}R3.1.2 Calcular receita				&		(Oculto)\\
+\hspace*{2cm}R3.1.3 Calcular despesas				&		(Oculto)\\
+\hspace*{1cm}R3.2 Calcular lucro ou prejuízo			&		(Oculto)\\
+\end{tabular}
+
+\begin{tabular}{p{0.77\textwidth} p{0.05\textwidth}}
+R4 Emitir Relatórios						&\\
+\hspace*{1cm}R4.1 Emissão de relatório de clientes		&\\
+\hspace*{2cm}R4.1.1 Relatório de contas em aberto, em atraso	&\\
+\hspace*{3cm}R4.1.1.1 Total					&		(Evidente)\\
+\hspace*{3cm}R4.1.1.2 Individual				&		(Evidente)\\
+\hspace*{2cm}R4.1.2 Relatório da situação do cliente		&		(Evidente)\\
+\hspace*{2cm}R4.1.3 Relatório geral de clientes			&		(Evidente)\\
+\hspace*{1cm}R4.2 Emissão de relatório de fornecedores		&\\
+\hspace*{2cm}R4.2.1 Relatório de contas em aberto, em atraso	&\\
+\hspace*{3cm}R4.2.1.1 Total					&		(Evidente)\\
+\hspace*{3cm}R4.2.1.2 Individual				&		(Evidente)\\
+\hspace*{2cm}R4.2.2 Relatório da situação do fornecedor		&		(Evidente)\\
+\hspace*{2cm}R4.2.3 Relatório geral de fornecedor		&		(Evidente)\\
+\hspace*{1cm}R4.3 Emissão de relatório de títulos pagos		&		(Evidente)\\
+\hspace*{1cm}R4.4 Emissão de relatório de fluxo de caixa	&		\\
+\hspace*{2cm}R4.4.1 Relatório diário				&		(Evidente)\\
+\hspace*{2cm}R4.4.2 Relatório por período			&		(Evidente)\\
+\hspace*{1cm}R4.5 Emissão de relatório de movimentação bancária	&		(Evidente)\\
+\end{tabular}
+
+\begin{tabular}{p{0.77\textwidth} p{0.05\textwidth}}
+R5 Efetuar "login" no sistema&\\
+\hspace*{1cm}R5.1 Validar usuario, senha e privilégios		&		(Evidente)
+\end{tabular}
+
+\begin{tabular}{p{0.77\textwidth} p{0.05\textwidth}}
+R6 Controlar Histórico de Operações&\\
+\hspace*{1cm}R6.1 Registrar Operação				&		(Oculto)\\
+\hspace*{1cm}R6.2 Exibir Histórico de Operações			&		(Evidente)
+\end{tabular}
+
+
+\chapter{Casos de Uso Espandido}
+
+Seguindo a APOO, o próximo passo da modelagem é a construção dos casos de uso.
+Tal construção é feita à partir da análise do DHF e das informações obtidas com o usuário sobre
+o funcionamento de sua empresa.
+
+Apresentamos, a seguir, os Casos de Uso Espandido.
+\clearpage
+
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth} }
+{\bf Caso de uso:} & Abrir Conta\\
+{\bf Atores:} & Usu\'ario (iniciador)\\
+{\bf Finalidade:} & Registrar uma nova conta a pagar/receber no sistema.\\
+{\bf Vis\~ao Geral:} & O usu\'ario recebe uma nova conta a pagar/receber. O usu\'ario registra a nova conta no sistema. \\
+{\bf Tipo:} & prim\'ario e essencial\\
+{\bf Refer\^encias cruzadas:} & {\it Fun\c c\~oes}:  R2.1, R2.1.1, R2.1.2, R6.1\\
+\end{tabular}
+
+%---------------------------
+\begin{tabular}[h]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{l}{{\bf Se\c c\~ao: Principal}}\\
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+1. Este caso de uso come\c ca quando o Usu\'ario recebe informa\c c\~ao sobre uma nova conta a pagar/receber.  & \\
+& 2. O sistema requisita o tipo de conta. \\
+3. O usu\'ario informa o tipo de conta (conta a pagar ou conta a receber)
+\begin{enumerate}
+\item[a.] se conta a pagar, ver se\c c\~ao {\it Conta a Pagar}
+\item[b.] se conta a receber, ver se\c c\~ao {\it Conta a Receber}
+\end{enumerate} & \\
+\end{tabular}\\
+\clearpage
+
+%---------------------------
+
+
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{l}{{\bf Se\c c\~ao: Conta a Receber}}\\
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+& 1. O sistema requisita os dados b\'asicos da conta \\
+2. O usu\'ario informa os dados b\'asicos da conta & \\
+& 3. O sistema valida as informa\c c\~oes b\'asicas da conta. No caso de inconsist\^encias, o sistema solicita a corre\c c\~ao dos mesmos.\\
+& 4. O sistema armazena as informa\c c\~oes sobre a nova conta. \\
+& 5. O sistema registra a abertura da conta no histórico de operações \\
+\end{tabular}\\\\
+%---------------------------
+{\bf Seq\"u\^encias alternativas}
+\begin{itemize}
+\item Linha 4: Cliente devedor n\~ao est\'a cadastrado no sistema. Solicitar cadastramento do mesmo, ou corre\c c\~ao dos dados da conta.
+\end{itemize}
+\clearpage
+{\bf Se\c c\~ao: Conta a Pagar}\\
+
+
+
+%---------------------------
+
+
+
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+& 1. O sistema requisita os dados b\'asicos da conta \\
+2. O usu\'ario informa os dados b\'asicos da conta & \\
+& 3. O sistema valida as informa\c c\~oes b\'asicas da conta. No caso de inconsist\^encias, o sistema solicita a corre\c c\~ao dos mesmos.\\
+& 4. O sistema armazena as informa\c c\~oes sobre a nova conta. \\
+& 5. O sistema registra a abertura da conta no histórico de operações \\
+\end{tabular}\\
+%---------------------------
+{\bf Seq\"u\^encias alternativas}\\
+%---------------------------
+\begin{tabular}[c]{p{0.9\textwidth}}
+\begin{itemize}
+\item {Linha 4: Fornecedor credor n\~ao est\'a cadastrado no sistema.
+Solicitar cadastramento do mesmo, ou corre\c c\~ao dos dados da conta.}
+\end{itemize}\\
+\end{tabular}\\
+\clearpage
+
+
+%-------------------------------------------------------------------------
+% caso de uso: registrar pagamento de conta
+%-------------------------------------------------------------------------
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+{\bf Caso de uso:} & Pagar Conta\\
+{\bf Atores:} & Usu\'ario (iniciador)\\
+{\bf Finalidade:} & Registrar o pagamento de uma conta.\\
+{\bf Vis\~ao Geral:} & O usu\'ario recebe ordem de pagar uma determinada conta. O usu\'ario determina o valor da conta, efetua o pagamento e registra o mesmo no sistema. \\
+{\bf Tipo:} & prim\'ario e essencial\\
+{\bf Refer\^encias cruzadas:} & {\it Fun\c c\~oes}:  R2.2, R2.2.1, R2.2.2, R2.2.3 \\
+\end{tabular}\\\\
+%---------------------------
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+1. Este caso de uso come\c ca quando o Usu\'ario recebe ordem de pagar uma determinada conta.  & \\
+& 2. O sistema requisita a identifica\c c\~ao da conta. \\
+3. O usu\'ario informa qual a conta a pagar. & \\
+& 4. O sistema verifica a exist\^encia de c\'alculos adicionais, relacionados \`a data do pagamento. Se existir, o sistema calcula e adiciona multa/desconto ao valor total da conta.  \\
+& 5. O sistema apresenta os dados da conta, juntamente com o valor a pagar.\\
+\end{tabular}
+
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+6. O usu\'ario informa o pagamento da conta. & \\
+& 7. O sistema registra o pagamento da conta. \\
+& 8. O sistema registra o débito na conta bancária \\
+& 9. O sistema registra a operação no histórico
+\end{tabular}\\
+%---------------------------
+{\bf Seq\"u\^encias alternativas}\\
+\begin{tabular}[c]{p{0.9\textwidth}}
+\begin{itemize}
+\item Linha 4: A conta n\~ao foi cadastrada/j\'a foi paga/tipo da conta inconsistente. Avisa o usu\'ario e encerra a opera\c c\~ao.
+\end{itemize}
+\end{tabular}\\
+\clearpage
+%-------------------------------------------------------------------------
+% caso de uso: registrar recebimento de conta
+%-------------------------------------------------------------------------
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth} }
+{\bf Caso de uso:} & Receber Conta\\
+{\bf Atores:} & Usu\'ario (iniciador)\\
+{\bf Finalidade:} & Registrar o recebimento de uma conta.\\
+{\bf Vis\~ao Geral:} & O usu\'ario recebe informa\c c\~ao de que uma determinada conta a receber foi recebida. O usu\'ario determina se o valor pago est\'a correto e registra o mesmo no sistema. \\
+{\bf Tipo:} & prim\'ario e essencial\\
+{\bf Refer\^encias cruzadas:} & {\it Fun\c c\~oes}:  R2.3, R2.3.1, R2.3.2, R2.3.3\\
+\end{tabular}\\
+
+%---------------------------
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{l}{{\bf Seção: Principal}}\\
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+1. Este caso de uso come\c ca quando o Usu\'ario recebe informa\c c\~oes de que um cliente pagou uma conta.  & \\
+& 2. O sistema requisita a identifica\c c\~ao da conta. \\
+3. O usu\'ario informa qual a conta recebida. & \\
+& 4. O sistema verifica a exist\^encia de c\'alculos adicionais, relacionados \`a data do pagamento. Se existir, o sistema calcula e adiciona multa/desconto ao valor total da conta.  \\
+& 5. O sistema requisita a forma de pagamento: em dinheiro ou por depósito bancário \\
+6. O Usuário informa a forma de pagamento:
+\begin{itemize}
+\item[a.] Se pagamento em dinheiro, ver seção {\it Pagamento em Dinheiro}
+\item[b.] Se pagamento por conta bancária, ver seção {\it Pagamento em Banco}
+\end{itemize}
+\end{tabular}\\
+\clearpage
+%---------------------------
+Seq\"u\^encias alternativas\\
+\begin{tabular}[c]{p{0.9\textwidth}}
+\begin{itemize}
+\item Linha 4: A conta n\~ao foi cadastrada/j\'a foi paga. Avisa o usu\'ario e encerra a opera\c c\~ao.
+\end{itemize}\\
+\end{tabular}\\
+%---------------------------
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{l}{{\bf Se\c c\~ao: Pagamento em Dinheiro}}\\
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+& 1. O sistema apresenta os dados da conta, juntamente com o valor a receber.\\
+2. O usu\'ario informa o valor recebido. & \\
+& 3. O sistema atualiza o valor do caixa \\
+& 4. O sistema registra a operação no histórico de operações \\
+& 5. O sistema registra o pagamento da conta
+\end{tabular}\\\\
+%---------------------------
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{l}{{\bf Se\c c\~ao: Pagamento em Banco}}\\
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+& 1. O sistema apresenta os dados da conta, juntamente com o valor a receber.\\
+2. O usu\'ario informa o valor recebido e o valor do documento no banco. & \\
+& 3. O sistema atualiza o valor da conta bancária \\
+& 4. O sistema registra a operação no histórico de operações \\
+& 5. O sistema registra o pagamento da conta
+\end{tabular}\\
+%---------------------------
+
+\clearpage
+%-------------------------------------------------------------------------
+% caso de uso: cadastrar Usu\'ario
+%-------------------------------------------------------------------------
+
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth} }
+{\bf Caso de uso:} & Cadastrar Usu\'ario\\
+{\bf Atores:} & Novo Usu\'ario (iniciador), Administrador\\
+{\bf Finalidade:} & Registrar um novo usu\'ario do sistema.\\
+{\bf Vis\~ao Geral:} & Um novo usu\'ario solicita seu cadastro no sistema ao administrador. O administrador coleta os dados do usu\'ario e efetua seu cadastro no sistema. \\
+{\bf Tipo:} & prim\'ario e essencial\\
+{\bf Refer\^encias cruzadas:} & {\it Fun\c c\~oes}:  R1.1, R1.1.1, R1.1.2, R5\\
+\end{tabular}\\
+\\
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+1. Este caso de uso come\c ca quando o Novo Usu\'ario solicita seu cadastro no sistema ao Administrador.  & \\
+& 2. O sistema apresenta uma lista de campos a serem preenchidos. \\
+3. O Administrador coleta as informa\c c\~oes com o Novo Usu\'ario e informa ao sistema. & \\
+& 4. O sistema verifica a integridade dos dados e, em caso de erro, informa ao Administrador.  \\
+& 5. O sistema registra o novo usu\'ario, juntamente com seus privil\'egios de acesso. \\
+6. Ao final, o usu\'ario esta apto a efetuar ``login'' no sistema. & \\
+\end{tabular}\\
+\clearpage
+%-------------------------------------------------------------------------
+% caso de uso: cadastrar Cliente
+%-------------------------------------------------------------------------
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth} }
+{\bf Caso de uso:} & Cadastrar Cliente\\
+{\bf Atores:} & Usu\'ario (iniciador)\\
+{\bf Finalidade:} & Registrar um novo cliente.\\
+{\bf Vis\~ao Geral:} & O usu\'ario recebe informa\c c\~oes sobre um novo cliente a ser cadastrado. O usu\'ario efetua o cadastro do novo cliente no sistema. \\
+{\bf Tipo:} & prim\'ario e essencial\\
+{\bf Refer\^encias cruzadas:} & {\it Fun\c c\~oes}:  R1.3, R1.3.1\\
+\end{tabular}\\
+\\
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+1. Este caso de uso come\c ca quando o Usu\'ario recebe informa\c c\~ao sobre um novo cliente a ser cadastrado. & \\
+& 2. O sistema apresenta uma lista de campos a serem preenchidos. \\
+3. O Usu\'ario insere as informa\c c\~oes sobre o novo cliente. & \\
+& 4. O sistema verifica a integridade dos dados e, em caso de erro, informa ao Usu\'ario.  \\
+& 5. O sistema registra o novo cliente e informa ao Usu\'ario. \\
+\end{tabular}\\
+\clearpage
+
+%-------------------------------------------------------------------------
+% caso de uso: cadastrar Fornecedor
+%-------------------------------------------------------------------------
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth} }
+{\bf Caso de uso:} & Cadastrar Fornecedor\\
+{\bf Atores:} & Usu\'ario (iniciador)\\
+{\bf Finalidade:} & Registrar um novo fornecedor.\\
+{\bf Vis\~ao Geral:} & O usu\'ario recebe informa\c c\~oes sobre um novo fornecedor a ser cadastrado. O usu\'ario efetua o cadastro do novo fornecedor no sistema. \\
+{\bf Tipo:} & prim\'ario e essencial\\
+{\bf Refer\^encias cruzadas:} & {\it Fun\c c\~oes}:  R1.2, R1.2.1\\
+\end{tabular}\\
+\\
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+1. Este caso de uso come\c ca quando o Usu\'ario recebe informa\c c\~ao sobre um novo fornecedor a ser cadastrado. & \\
+& 2. O sistema apresenta uma lista de campos a serem preenchidos. \\
+3. O Usu\'ario insere as informa\c c\~oes sobre o novo fornecedor. & \\
+& 4. O sistema verifica a integridade dos dados e, em caso de erro, informa ao Usu\'ario.  \\
+& 5. O sistema registra o novo fornecedor e informa ao Usu\'ario. \\
+\end{tabular}\\
+\clearpage
+
+%-------------------------------------------------------------------------
+% caso de uso: cadastrar Banco
+%-------------------------------------------------------------------------
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth} }
+{\bf Caso de uso:} & Cadastrar Conta Banc\'aria\\
+{\bf Atores:} & Usu\'ario (iniciador)\\
+{\bf Finalidade:} & Registrar uma nova conta banc\'aria.\\
+{\bf Vis\~ao Geral:} & O usu\'ario recebe informa\c c\~oes sobre uma nova conta banc\'aria a ser cadastrada. O usu\'ario efetua o cadastro da nova conta banc\'aria no sistema. \\
+{\bf Tipo:} & prim\'ario e essencial\\
+{\bf Refer\^encias cruzadas:} & {\it Fun\c c\~oes}:  R1.4, R1.4.1\\
+\end{tabular}\\
+\\
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+1. Este caso de uso come\c ca quando o Usu\'ario recebe informa\c c\~ao sobre uma nova conta banc\'aria a ser cadastrada. & \\
+& 2. O sistema apresenta uma lista de campos a serem preenchidos. \\
+3. O Usu\'ario insere as informa\c c\~oes sobre a nova conta banc\'aria. & \\
+& 4. O sistema verifica a integridade dos dados e, em caso de erro, informa ao Usu\'ario.  \\
+& 5. O sistema registra a nova conta banc\'aria e informa ao Usu\'ario. \\
+\end{tabular}\\
+\clearpage
+%-------------------------------------------------------------------------
+% caso de uso: efetuar "login" no sistema
+%-------------------------------------------------------------------------
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth} }
+{\bf Caso de uso:} & Efetuar ``login'' no sistema\\
+{\bf Atores:} & Usu\'ario (iniciador)\\
+{\bf Finalidade:} & Identificar Usu\'ario acessando o sistema. Determinar opera\c c\~oes permitidas para este Usu\'ario.\\
+{\bf Vis\~ao Geral:} & O Usu\'ario, desejando efetuar alguma opera\c c\~ao, identifica-se para o sistema. O sistema valida os dados e permite que o Usu\'ario prossiga.\\
+{\bf Tipo:} & prim\'ario e essencial\\
+{\bf Refer\^encias cruzadas:} & {\it Fun\c c\~oes}:  R5, R5.1\\
+\end{tabular}\\
+\\
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+1. Este caso de uso inicia quando o Usu\'ario deseja se identificar para o sistema, a fim de efetuar alguma opera\c c\~ao. & \\
+& 2. O sistema requisita a identifica\c c\~ao do Usu\'ario. \\
+3. O Usu\'ario entra com sua identifica\c c\~ao. & \\
+& 4. O sistema valida a identifica\c c\~ao, aceitando-a ou rejeitando-a. \\
+& 5. O sistema verifica o n\'ivel de privil\'egio cadastrado para o Usu\'ario. A partir de ent\~ao, trata-o como Usu\'ario comum ou Administrador. \\
+6. O Usu\'ario ou Administrador encontra-se apto a operar o sistema. & \\
+\end{tabular}
+
+
+\clearpage
+%-------------------------------------------------------------------------
+% caso de uso: Transferencia de dinheiro Banco <--> Caixa
+%-------------------------------------------------------------------------
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth} }
+{\bf Caso de uso:} & Efetuar transferência de dinheiro entre Conta Bancária e Caixa\\
+{\bf Atores:} & Usu\'ario (iniciador)\\
+{\bf Finalidade:} & Registrar transferência de dinheiro entre o caixa e a(s) conta(s) bancária(s) da empresa.\\
+{\bf Vis\~ao Geral:} & O usuário informa que houve uma movimentação de dinhero entre o caixa e uma conta bancária. O sistema atualiza os valores do Caixa e da Conta Bancária, e registra a operação\\
+{\bf Tipo:} & prim\'ario e essencial\\
+{\bf Refer\^encias cruzadas:} & {\it Fun\c c\~oes}:  R2.4, R2.4.1, R2.4.2, R2.4.3, R2.4.4\\
+\end{tabular}\\
+\\
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{l}{{\bf Seção: Principal}}\\
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+1. Este caso de uso inicia quando o Usu\'ario deseja informar uma movimentação entre caixa e banco. & \\
+& 2. O sistema requisita o sentido da movimentação (banco $\to$ caixa ou caixa $\to$ banco). \\
+3. O Usuário informa o sentido da movimentação.
+\begin{itemize}
+\item[a.] Se do Banco para o Caixa, ver seção {\it Movimentação do Banco para o Caixa}
+\item[b.] Se do Caixa para o Banco, ver seção {\it Movimentação do Caixa para o Banco}
+\end{itemize}
+\end{tabular}
+
+%---------------------------
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{l}{{\bf Se\c c\~ao: Movimentação do Caixa para o Banco}}\\
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+& 1. O sistema requisita a identificação da Conta Bancária e a quantidade a transferir.\\
+2. O usu\'ario informa conta bancária e valor a transferir. & \\
+& 3. O sistema subtrai o valor do caixa e adiciona à conta bancária\\
+& 4. O sistema registra a operação no histórico de operações \\
+\end{tabular}\\\\
+%---------------------------
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{l}{{\bf Se\c c\~ao: Movimentação do Banco para o Caixa}}\\
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+& 1. O sistema requisita a identificação da Conta Bancária e a quantidade a transferir.\\
+2. O usu\'ario informa conta bancária e valor a transferir. & \\
+& 3. O sistema subtrai o valor do banco e adiciona ao caixa\\
+& 4. O sistema registra a operação no histórico de operações \\
+\end{tabular}\\
+
+\clearpage
+
+%-------------------------------------------------------------------------
+% caso de uso: Exibir histórico de operações
+%-------------------------------------------------------------------------
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth} }
+{\bf Caso de uso:} & Exibir Histórico de Operações\\
+{\bf Atores:} & Administrador (iniciador)\\
+{\bf Finalidade:} & Exibir o histórico de operações efetuadas em um período qualquer de tempo.\\
+{\bf Vis\~ao Geral:} & O administrador requisita a geração de um relatório contendo o histórico das operações efetuadas em um período de tempo que ele deve informar. O sistema busca, no histórico, as operações efetuadas dentro deste período. O sistema monta o relatório e o devolve ao adminsitrador.\\
+{\bf Tipo:} & prim\'ario e essencial\\
+{\bf Refer\^encias cruzadas:} & {\it Fun\c c\~oes}:  R6.2 \\
+\end{tabular}\\
+\\
+\begin{tabular}[c]{p{0.47\textwidth}  p{0.47\textwidth}}
+\multicolumn{2}{c}{{\bf Seq\"u\^encia T\'ipica de Eventos}} \\
+\begin{center}{\bf A\c c\~ao do Ator}\end{center} & \begin{center}{\bf Resposta do Sistema}\end{center} \\
+1. Este caso de uso inicia quando o Administrador requisita a emissao de um relatório de histórico de operações. & \\
+& 2. O sistema requisita o período do relatório(data de início e data de final) \\
+3. O administrador entra com a data de início e fim do relatório. & \\
+& 4. O sistema busca os dados do relatório \\
+& 5. O sistema monta o relatório \\
+& 6. O sistema retorna o relatório para o administrador.
+\end{tabular}
+
+\clearpage
+
+\chapter{Diagrama de Casos de Uso}
+
+O Diagrama de Casos de Uso visa facilitar a compreensão tanto do usuário quanto do
+projetista acerca do funcionamento geral do sistema.
+O diagrama une os Casos de Uso Estendido em um único gráfico.
+Assim, mostrou-se bastante eficiente, facilitando a comunicação entre os projetistas e o usuário.
+
+Apresentamos, a seguir, o Diagrama de Casos de Uso
+\begin{figure}
+	\begin{center}
+		\includegraphics[angle=90,scale=0.7]{diagCasosUso.eps}
+	\end{center}
+	\caption{Diagrama de Casos de Uso}
+\end{figure}
+
+\chapter{Diagrama Conceitual}
+
+O Diagrama Conceitual é a parte mais importante da Análise Orientada a Objetos (AOO).
+Através de sua análise, observa-se a correlação entre os objetos do domínio do problema do
+usuário e dos que serão representados na modelagem do sistema.
+Nesse ponto da construção do sistema, os objetos são denominados \emph{conceitos}.
+Além disso, mostra como os conceitos se relacionam.
+
+Após esta etapa, a presença do usuário não é mais tão necessária. Ela é mais importante durante a
+etapa de análise (o usuário responde a questão de o quê fazer).  Após a análise, vem o projeto: a
+questão, aqui, é como fazer  e, nesse caso, o usuário não sabe (nem deveria saber) como fazer.
+
+Para a construção do diagrama conceitual, parte-se dos Casos de Uso, identificando neles quais
+são os conceitos importantes.
+Para cada um desses elementos, inclui-se no diagrama um conceito que o represente.
+Cada conceito possui atributos que dão
+características. Os conceitos e suas características são inseridas no Glossário.
+Após a identificação de todos os conceitos e atributos, parte-se para a identifcação dos relacionamentos.
+
+Uma observação importante é que, para o usuário, o diagrama conceitual não é intuitivo,
+principalmente no que se refere ao relacionamento entre conceitos.  É necessário alguma explicação
+sobre o funcionamento desse diagrama.
+
+Esta etapa marca o fim da etapa de AOO. Depois de construído o diagrama conceitual, parte-se 
+para o projeto  propriamente dito.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[angle=90,scale=0.9]{conceitual.eps}
+	\end{center}
+	\caption{Diagrama Conceitual}
+\end{figure}
+
+
+\chapter{Glossário}
+
+\begin{tabular}{p{0.2\textwidth} p{0.2\textwidth} p{0.5\textwidth}}
+{\bf Termo}	&	{\bf Categoria}	&	{\bf Comentário}	\\
+Abrir Conta	&	Casos de uso	&	Processo de abrir uma conta para pagar ou receber\\
+Pagar Conta	&	Casos de uso	&	Processo de pagar uma conta anteriormente aberta\\
+Cadastrar Conta Bancária	&	Casos de uso	&	Processo de cadastrar uma conta bancária da Empresa no sistema\\
+Receber Conta	&	Casos de uso	&	Processo de receber o pagamento de uma conta anteriormente aberta\\
+Cadastrar Usuário	&	Casos de uso	&	Processo de cadastrar um usuário para utilizar o sistema\\
+Cadastrar Cliente	&	Casos de uso	&	Processo de cadastrar um cliente\\
+Cadastrar Fornecedor	&	Casos de uso	&	Processo de cadastrar um fornecedor\\
+Requisitar Relatório	&	Casos de uso	&	Processo de requisitar relatório de um dos casos de uso acima\\
+Login no Sistema	&	Casos de uso	&	Processo de efetuar login no sistema\\
+Exibir Histórico	&	Casos de uso	&	Processo que exibe histórico de operações\\
+Efetuar transferência & Casos de uso & Processo que efetua transferências
+entre contas bancárias e o caixa \\
+Cliente	&	Conceito	&	Cliente que contrata serviços da empresa\\
+End : String	&	Atributo (Cliente)	&	Endereço do cliente\\
+\end{tabular}
+
+\begin{tabular}{p{0.2\textwidth} p{0.2\textwidth} p{0.5\textwidth}}
+Tel : int	&	Atributo (Cliente)	&	Telefone do cliente\\
+Nome : String	&	Atributo (Cliente)	&	Nome do cliente\\
+Cliente Jurídico	&	Conceito	&	Especialização do conceito Cliente\\
+CNPJ : long	&	Atributo (Cliente Jurídico)	&	Identificação da empresa-cliente\\
+Cliente Físico	&	Conceito	&	Especialização do conceito Cliente\\
+CPF : long	&	Atributo (Cliente Físico)	&	Identificação do cliente\\
+Date	&	Tipo	&	Indica a data de um evento\\
+Contas	&	Conceito	&	Contas da Empresa\\
+Valor : float	&	Atributo (Contas)	&	Valor da conta\\
+NoDuplicata : int	&	Atributo (Contas)	&	Número da duplicata da conta\\
+DataEmissao : date	&	Atributo (Contas)	&	Data de emissão da duplicata\\
+Multa : float	&	Atributo (Contas)	&	Multa da conta\\
+Juros : float	&	Atributo (Contas)	&	Juros da conta\\
+Desconto : float	&	Atributo (Contas)	&	Desconto da conta\\
+Contas a Receber	&	Conceito	&	Especialização do conceito Contas\\
+DataRecebimt : date	&	Atributo (Contas a Receber)	&	Data que a conta foi recebida\\
+Contas a Pagar	&	Conceito	&	Especialização do conceito Contas\\
+DataPagamt : date	&	Atributo (Contas a Pagar)	&	Data de pagamento de uma duplicata\\
+Empresa	&	Conceito	&	Empresa Install Service\\
+Fornecedor	&	Conceito	&	Fornecedores de serviçoes e material da Empresa\\
+\end{tabular}
+
+\begin{tabular}{p{0.2\textwidth} p{0.2\textwidth} p{0.5\textwidth}}
+Nome : String	&	Atributo (Fornecedor)	&	Nome do fornecedor\\
+CNPJ : long	&	Atributo (Fornecedor)	&	identificação do fornecedor\\
+End : String	&	Atributo (Fornecedor)	&	Endereço do fornecedor\\
+Tel : int	&	Atributo (Fornecedor)	&	Telefone do forncedor\\
+Inscricao : long & Atributo (Fornecedor) & Inscrição Estadual do fornecedor\\
+Caixa	&	Conceito	&	Dinheiro que fica na Empresa\\
+Total : double	&	Atributo (Caixa)	&	Quantia total que está na Empresa\\
+Conta Bancária	&	Conceito	&	Contas bancárias da Empresa\\
+Banco : int	&	Atributo (Conta Bancária)	&	Número do banco\\
+Agencia : int	&	Atributo (Conta Bancária)	&	Número da agência do banco\\
+Conta : int	&	Atributo (Conta Bancária)	&	Número da conta corrente\\
+Saldo : double & Atributo (Conta Bancária) & Saldo atual da conta\\
+Usuário	&	Conceito	&	Usuários que utilizam o sistema\\
+UID : String	&	Atributo (Usuário)	&	Identificador do Usuário\\
+Senha : String	&	Atributo (Usuário)	&	Senha de login\\
+Administrador	&	Conceito	&	Especialização do conceito Usuário, representa um
+usuário com privilégios administrativos no sistema. \\
+Histórico : & Conceito & Armazena o histórico de todas as operações
+financeiras efetuadas \\
+\end{tabular}
+
+\begin{tabular}{p{0.2\textwidth} p{0.2\textwidth} p{0.5\textwidth}}
+Operacao : & Conceito & Representa uma operacao financeira, armazenada no
+histórico de operações. \\
+tipoOperacao:int & Atributo (Operacao) & tipo de operação financeira efetuada \\
+quantidade:double  & Atributo (Operacao) & valor total da operação \\
+descricao:string & Atributo (Operacao) & descricao textual da operação\\
+data:Date & Atributo (Operacao) & data da operação. \\
+hora:Time & Atributo (Operacao) & hora da operação.
+\end{tabular}
+
+\chapter{Diagramas de Seqüência}
+
+Ao iniciarmos a construção dos Diagramas de Seqüência, percebemos que faltava uma unidade que
+centralizasse as ações vindas da interface. Então, decidimos que era necessária uma reformulação
+no Diagrama Conceitual. Essa foi uma das causas do projeto não ter terminado no tempo que previmos.
+Percebemos, também, que era preciso mais algumas reuniões com o usuário, pois, a falta que esse
+conceito fez, poderia ter ocorrido em uma falta de entendimento em alguma fase anterior.
+
+Esses diagramas foram os mais difíceis de serem feitos, pois o projeto não foi feito em ciclos, como
+comentado em aula. Todos os métodos do Diagrama de Classe são provenientes daqui, pois é nesse estágio
+que realizamos as interações dos conceitos para realizar os casos de uso.
+
+Cada Caso de Uso Estendido tem o seu Diagrama de Seqüência, entretanto, devido à alta complexidade
+de três Casos de Uso (citar aqui), exibimos aqui apenas os mais simples.
+
+A seguir, apresentamos o Diagrama de Seqüência para cada Caso de Uso Expandido
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[angle=90,scale=0.7]{cadastraCliente.eps}
+	\end{center}
+	\caption{Caso de Uso Cadastrar Cliente}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[angle=90,scale=0.7]{cadastraContaBancaria.eps}
+	\end{center}
+	\caption{Caso de Uso Cadastrar Conta Bancaria}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[angle=90,scale=0.8]{cadastraFornecedor.eps}
+	\end{center}
+	\caption{Caso de Uso Cadastrar Fornecedor}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[angle=90,scale=0.7]{cadastraUsuario.eps}
+	\end{center}
+	\caption{Caso de Uso Cadastrar Usuario}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.8]{logaUsuario.eps}
+	\end{center}
+	\caption{Caso de Uso Efetuar Login no Sistema}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[angle=90,scale=0.7]{pagarConta.eps}
+	\end{center}
+	\caption{Caso de Uso Pagar Conta}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.8]{requisitarRelatorio.eps}
+	\end{center}
+	\caption{Caso de Uso Exibir Histórico de Operações}
+\end{figure}
+
+\chapter{Diagrama de Classes}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[angle=90,scale=0.5]{classe.eps}
+	\end{center}
+	\caption{Diagrama de Classes}
+\end{figure}
+
+\chapter{Conclusões}
+Acreditamos que a soma mais importante sobre a realização deste trabalho foi o crescimento que
+ele nos acrescentou como futuros profissionais da área de informática, pois proporcionou uma interatividade
+maior com o usuário final. Até o presente momento, no curso, nenhum dos integrantes do grupo tinha tido
+contato algum com usuários reais. Todos os softwares desenvolvidos, até então,
+eram dentro de um ambiente escolar.
+
+O contato com usuários, seus problemas e sua falta de conhecimento técnico
+sobre o assunto ``informática'' nos mostrou que é bastante difícil lidar com
+eles. É difícil extrair informações, assim como perguntar algo de uma área que
+não nos é familiar.
+
+O desenvolvimento de um sistema realmente demora mais do que o previsto.  Inicialmente, 
+tínhamos previsto uma reunião do grupo para cada etapa do trabalho e, com isso, esperávamos concluir
+todo ele; mas não foi o que ocorreu. Além de necessitarmos mais reuniões do grupo, necessitamos, também, mais
+reuniões com o usuário.
+
+O uso da APOO facilitou a construção deste trabalho.  O fato de existir uma metodologia para o
+desenvolvimento nos permitiu realizar uma especificação padronizada e de boa qualidade.
+Caso não tivessemos seguido a metodologia, provavelmente cada componente do grupo pensaria
+em uma maneira diferente de desenvolver o software.
+
+PT saudaçoes professor...
+\begin{thebibliography}{este-parametro-nao-eh-usado-pelo-estilo-ABNT}
+
+\bibitem[LARMAN, 2000]{larman} LARMAN,
+  C.\@. \textbf{Utilizando UML e Padr{\~o}es}: Uma introdu{\c c}{\~a}o {\`a} an{\'a}lise
+  e ao projeto orientados a objetos. Porto Alegre: Bookman, 2000.
+
+\bibitem[NOTSS, 2003]{notss} OIETIKER, T.; PARTL, H.; HYNA, I.; SCHLEGL, E.\@.
+  \textbf{The Not So Short Introduction to \LaTeXe}. Version 4.12, 13 April, 2003.
+
+\bibitem[LAMIN(2004)INF01147]{prof} ZIRBES, SERGIO F.\@. \textbf{Lâminas da p\'agina do Professor
+Sérgio Felipe Zirbes}. Disponível em:
+  $<$http://www.inf.ufrgs.br/~zirbes$>$. Acesso em: maio 2001.
+
+\bibitem[UTUG(2001)UTUG]{UTUG:Homepage-01} UTUG\@. \textbf{Página do grupo
+  de usuários {\TeX} da {UFRGS}}. Disponível em:
+  $<$http://www.inf.ufrgs.br/utug$>$. Acesso em: maio 2001.
+
+\end{thebibliography}
+
+\end{document}

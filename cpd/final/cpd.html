@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>TRABALHO CPD</title>
+
+<style>
+<!--
+ /* Style Definitions */
+
+a { color: #ffff00; text-decoration: none }
+a:visited { color: cyan }
+a:hover { color: #ff9966 }
+-->
+</style>
+</head>
+
+<body bgcolor=#000000 background="Fundos/zertxtr.gif" text=#ffffff lang=PT-BR style='tab-interval:35.4pt'>
+
+<h2>UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL<br>
+Instituto de Informática </h2>
+
+<H2>Reduzindo Imagens BITMAP Para 256 Cores</H2>
+
+<p><b>Disciplina: Classificação e Pesquisa de dados<br>
+Professor: <a href="http://www.inf.ufrgs.br/~oliveira">Manuel Oliveira</a> <br>
+Autores: Mairo Pedrini <br> 
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Paulo Sérgio Morandi Júnior<br></b></p>
+
+<H3>Descrição do Trabalho:</H3>
+<p>Nosso trabalho visa reduzir a quantidade de cores utilizadas por imagens <i>bitmap</i> de 24 bits (totalizando 16 milhões de cores) para 256 cores. Preferencialmente, recomendamos o uso de imagens bitmap de tamanho 320x200, se desejar visualizar a figura na tela primeiramente, pois é gerado um arquivo após a conversão chamado "saida.bmp". A configuração necessária é ter um computador que tenha 
+MS-DOS instalado e, dependendo da quantidade de cores inicialmente utilizadas pelo <i>bitmap</i>, MUUUUUITAAAA MEMÓRIA RAM</p>
+<BR>
+<H3>Detalhes dos Algoritmos utilizados:</H3>
+<p>Inicialmente utilizamos uma lista encadeada para fazer a leitura das cores do bitmap, o que tornou o processo MUITO lento (custo O(n<SUP>2</SUP>) para inserção). Pensamos então em utilizar uma estrutura de dados que fosse mais robusta, e propiciasse um menor tempo de construção, pois, além da construção estar lenta, o processo de redução das cores também era dispendioso. Solução encontrada: Arvores AVL. Logo, durante a leitura, as cores são estruturadas em arvore AVL, é construída uma nova árvore AVL mas agora ordenada por freqüência. Nossa intenção inicial era de utilizar árvores AVL em todos os passos do algoritmo, pois seus custos de inclusão, exclusão e pesquisa são menores do que os de uma lista encadeada comum mas, ao iniciarmos a implementação do algoritmo, nos deparamos com a falta de conhecimento técnico para implementar o algoritmo de exclusão em árvores AVL. Desta forma, o que nos restou fazer foi converter a árvore AVL de freqüências em uma lista encadeada (eliminando, ao menos, o custo de ordenar a lista). O cálculo utilizado na redução das cores, aplicado em cada componente (vermelho, verde e azul) é uma média aritmética das cores que se quer "eliminar" e da melhor aproximação, utilizando-se a freqüência das mesmas como fator de ponderação.
+</p>
+<BR>
+
+<H3>Download das versões do trabalho:</H3>
+
+<a href="projeto.zip">projeto.zip </a> (Versão Final)
+<BR>
+<p>No arquivo <i>antigo.zip</i> o programa <i>main.exe</i> apenas executa a leitura do bitmap em tons de cinza e apresenta na tela. Este arquivo é apenas para mostrar o ganho de velocidade que se obteve ao usar árvores AVL, ao invés de lista lineares (pelo menos na parte de leitura).</p>
+<a href='antigo.zip'>antigo.zip</a>
+<br>
+<BR>
+<table>
+		<col align=center>
+		<col align=center>
+	<tr>
+		<td>ANTES
+		<td>DEPOIS
+	<tr>
+		<td><img src="figuras/f117_0.bmp">
+		<td><img src="figuras/saida1.bmp">
+	<tr>
+		<td colspan=2><b><i>3829 cores</i></b><br>&nbsp;
+	<tr>
+		<td><img src="figuras/mig31_2.bmp">
+		<td><img src="figuras/saida2.bmp">
+	<tr>
+		<td colspan=2><b><i>15856 cores</i></b><br>&nbsp;
+	<tr>
+		<td><img src="figuras/south-park.bmp">
+		<td><img src="figuras/saida3.bmp">
+	<tr>
+		<td colspan=2><b><i>10604 cores</i></b><br>&nbsp;
+	<tr>
+                <td><img src="figuras/f-50.bmp">
+                <td><img src="figuras/saida4.bmp">
+        <tr>
+                <td colspan=2><b><i>16765 cores</i></b><br>&nbsp;
+</table>
+<BR>
+
+Para uma melhor vizualização da redução de cores, abra as figuras num editor
+qualquer e dê um "zoom" nas figuras. Note também a diferença no tamanho dos 
+arquivos.
+</body>
+
+</html>

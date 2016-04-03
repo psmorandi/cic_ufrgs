@@ -1,0 +1,175 @@
+/* CSS Document */
+
+.menu
+	{
+	font-family:Verdana;
+	color:#ffffff !important;
+	font-size:11px; 
+	text-decoration: none !important;
+	}
+
+
+.menu:active
+	{
+	font-family:Verdana;
+	color:#FF0000;
+	font-size:11px; 
+	text-decoration: underline;
+	}
+
+.menu:hover
+	{
+	font-family:Verdana;
+	color:#ffffff !important;
+	font-size:11px; 
+	text-decoration: underline !important;
+	}
+
+.menu:visited
+	{
+	font-family:Verdana;
+	color:#ffffff;
+	font-size:11px; 
+	text-decoration: none;
+	}
+
+	
+.menu2
+	{
+	font-family:Verdana;
+	color:#ffff00 !important;
+	font-size:11px; 
+	text-decoration: none !important;
+	}
+
+.menu2:hover
+	{
+	font-family:Verdana;
+	color:#ffff00 !important;
+	font-size:11px; 
+	text-decoration: underline !important;
+	}
+.menu2:visited
+	{
+	font-family:Verdana;
+	color:#ffff00;
+	font-size:11px; 
+	text-decoration: none;
+	}
+
+.campo, input {
+		font-family:Verdana;
+		font-size:11px; 
+		color:#000000;
+		background:#FFFFFF; 
+		}
+
+.select {
+		font-family:Verdana;
+		font-size:11px; 
+		color:#000000;
+		background:#FFFFFF; 
+		}
+
+.texto, .padrao, td {
+	font-family:Verdana;
+	text-decoration: none; 
+    text-align: justify;
+	color: #000000; 
+	font-size: 11px;
+	}
+
+.texto_branco {
+	font-family:Verdana;
+	text-decoration: none; 
+	color: #FFFFFF; 
+	font-size: 11px;
+	}
+
+.destaque_titulo{
+	font-family:Verdana;
+	text-decoration: underline; 
+	color: #666666; 
+	font-size: 11px;
+	font-weight: bold;
+	}
+
+.destaque, .artigo {
+	font-family:Verdana;
+	text-decoration: none !important; 
+	color: #666666 !important; 
+	font-size: 11px !important;
+	}
+	
+.destaque:active {
+	font-family:Verdana;
+	text-decoration: none; 
+	color: #969696; 
+	font-size: 11px;
+	}
+
+.destaque:hover {
+	font-family:Verdana;
+	text-decoration: none !important; 
+	color: #969696 !important; 
+	font-size: 11px !important;
+	}
+	
+.destaque:visited {
+	font-family:Verdana;
+	text-decoration: none; 
+	color: #969696; 
+	font-size: 11px;
+	}	
+		
+A:link {
+	text-decoration: none;
+	color: #005300;
+	}
+
+A:active {	
+	text-decoration: none;
+	color: #005300;
+	}
+	
+A:hover {
+	text-decoration: underline !important;
+	color: #008200 !important;
+	}	
+		
+A:visited {
+	text-decoration: none;
+	color: #005300;
+	}
+
+.esquerda { text-align: left; }
+.centro { text-align: center; }
+.direita { text-align: right; }
+.codigo { background-color: #eeeeee; }
+.codigo { background-color: #fffff4; border: 1px solid #d4d4c6; }
+
+.titulo {
+	font-family:Arial, Helvetica;
+	text-decoration: none; 
+	color: #000000; 
+	font-size: 16px;
+	font-weight: bold;
+	}
+
+.titulo2 {
+	font-family:Arial, Helvetica;
+	text-decoration: none; 
+	color: #000000; 
+	font-size: 14px;
+	font-weight: bold;
+	}
+
+.titulo3, H3 {
+	font-family:Arial, Helvetica;
+	text-decoration: none; 
+	color: #1C2D1F; 
+	font-size: 12px;
+	font-weight: bold;
+	}
+
+.coluna { background-image: url('/imagens/verde/interna_titulo_bg.jpg'); }

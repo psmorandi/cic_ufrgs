@@ -1,0 +1,17 @@
+<1+1>
+
+Obj
+{
+  A
+  B
+}
+
+Morf
+{
+   *   a   A   A
+   *   b   B   B
+}
+
+Comp
+{
+}

@@ -1,0 +1,300 @@
+<html><head><!-- 
+Programador por: Fábio Berbert de Paula
+E-mail: fabio@vivaolinux.com.br
+Web Site: www.vivaolinux.com.br
+
+Tema: Harmonia Celeste
+--><title>MrProject: O gerenciador de projetos (MSProject) para Linux [Artigo]</title>
+
+  <link rel="Add Icon" href="http://www.vivaolinux.com.br/favicon.ico">
+  <link rel="Shortcut Icon" href="http://www.vivaolinux.com.br/favicon.ico">
+  <link rel="Icon" href="http://www.vivaolinux.com.br/favicon.ico" type="image/ico">
+<link rel="stylesheet" href="impressora.php_files/estilo-verde.css" type="text/css"></head><body leftmargin="0" topmargin="0" bgcolor="#ffffff" marginheight="0" marginwidth="0">
+
+<table border="0" cellpadding="3" cellspacing="3" width="750">
+<tbody><tr>
+  <td><img src="impressora.php_files/logo_impressao.gif" height="68" width="118"></td>
+  <td class="direita"><img src="impressora.php_files/impressao_slogan.gif" height="24" width="249"></td>
+</tr>
+<tr>
+  <td colspan="2"><hr noshade="noshade" size="1"></td>
+</tr>
+<tr><td colspan="2">
+<h3>MrProject: O gerenciador de projetos (MSProject) para Linux</h3>
+Autor: Alessandro de Oliveira Faria &lt;alessandrofaria at netitec.com.br&gt;<br>
+Data: 08/03/2005
+<br><br>
+</td></tr>
+
+<tr><td colspan="2">
+<b>Introdução</b>
+<br><br>
+<table border="0">
+<tbody><tr><td align="justify">
+Com planejamento conseguimos cumprir prazos, gerenciar tempo, 
+elaborar cronogramas e transmitir seriedade e profissionalismo 
+ao cliente. Sem contar no controle sobre um determinado projeto 
+em execução. 
+<br><br>
+A execução de um planejamento com a ferramenta <i>MrProject</i> 
+tornam os projetos bem mais organizados. Neste documento 
+conceitual, tomarei como exemplo a criação de um cronograma para 
+a elaboração de um artigo, geração de gráfico Gantt e outros.  
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><img src="impressora.php_files/cabelo_project26.png" border="0" height="433" width="418"></td></tr>
+</tbody></table>
+<br>
+</td></tr>
+<tr><td colspan="2">
+<b>Obtendo, executando e conhecendo o MrProject</b>
+<br><br>
+<table border="0">
+<tbody><tr><td align="justify">
+Encontrei pacotes para todos os sabores de distribuição pela internet. 
+Entretanto, no meu caso, que utilizo o <i>SuSE</i> 9.1,  efetuei o 
+download em: 
+<ul>
+<li> <a href="http://rpmfind.net/linux/RPM/suse/9.0/i386/suse/i586/mrproject-0.9.1-233.i586.html">http://rpmfind.net/linux/RPM/suse/9.0/i386/suse/i586/mrproject-0.9.1-233.i586.html</a>
+</li></ul><br>
+Não entrarei em detalhes referentes a instalação e sim na operacionalidade da ferramenta.
+<br><br>
+Depois de instalado, para executar o <i>MrProject</i> digite:
+<br><br>
+<b>$ mrproject</b>
+<br><br>
+Se tudo estiver devidamente configurado e instalado, teremos a 
+seguinte tela:
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project01.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project01.png" border="0" height="150" width="200"></a></td></tr>
+
+
+<tr><td align="justify">
+Esta é a interface principal do MrProject, na barra lateral 
+definimos o tipo de visualização. Na barra de ferramentas temos as ações principais.
+<br><br>
+</td></tr>
+</tbody></table>
+<br>
+</td></tr>
+<tr><td colspan="2">
+<b>Criando um projeto com planejamento</b>
+<br><br>
+<table border="0">
+<tbody><tr><td align="justify">
+Agora vamos criar o cronograma de um projeto de criação de um 
+artigo. Com isto teremos o conceito base da elaboração de um projeto.
+<br><br>
+Clique no ítem PROJETO do menu principal e selecione a opção 
+GERIR CALENDÁRIO conforme a figura abaixo:
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><img src="impressora.php_files/cabelo_project02.png" border="0" height="118" width="188"></td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project03.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project03.png" border="0" height="95" width="200"></a></td></tr>
+
+
+<tr><td align="justify"><br>
+Estamos no EDITOR DE CALENDÁRIO, cuja finalidade é definir grupos 
+de dias úteis e não úteis, podemos criar diversos quadros de 
+horários para diversos tipos de funções dentro de um projeto.
+<br><br>
+Para editar os grupos de quadros de horários, clique no botão 
+HORÁRIO TRABALHO, assim podendo incluir diverso grupos de 
+horários. Veja o exemplo abaixo:
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><img src="impressora.php_files/cabelo_project05.png" border="0" height="275" width="339"></td></tr>
+
+<tr><td align="justify"><br>
+Quando criamos um grupo de horário, definimos o horário de 
+entrada e saída com os respectivos intervalos de descanso 
+(se houver).
+<br><br>
+Depois de definido os grupo de horários, clique em SEMANA POR OMISSÃO. 
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><img src="impressora.php_files/cabelo_project06.png" border="0" height="375" width="437"></td></tr>
+
+<tr><td align="justify"><br>
+Neste formulário, podemos definir quadro de horário que usaremos 
+para cada dia da semana.
+<br><br>
+Agora vamos novamente em PROJETO do menu principal e selecione a 
+opção EDITAR FASES DO PROJETO conforme a figura abaixo:
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><img src="impressora.php_files/cabelo_project07.png" border="0" height="375" width="437"></td></tr>
+
+<tr><td align="justify"><br>
+Clique em ADICIONAR para inserir as fases do nosso projeto 
+conforme a figura logo acima. Em nosso exemplo utilizei as 
+principais fase de elaboração de um projeto.
+<br><br>
+Agora novamente no ítem PROJETO do menu principal, selecione a 
+opção PROPRIEDADES DO PROJETO para informar os detalhes do 
+nosso cronograma conforme a figura abaixo:
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><img src="impressora.php_files/cabelo_project10.png" border="0" height="320" width="350"></td></tr>
+
+<tr><td align="justify"><br>
+Salve em disco o projeto clicando no botão SALVAR da barra de 
+ferramentas:
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project11.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project11.png" border="0" height="150" width="183"></a></td></tr>
+
+<tr><td align="justify"><br>
+Escolha a pasta e o nome a ser atribuído ao projeto. 
+<br><br>
+</td></tr>
+</tbody></table>
+<br>
+</td></tr>
+<tr><td colspan="2">
+<b>Pessoas/profissionais, recursos e tarefas do projeto</b>
+<br><br>
+<table border="0">
+<tbody><tr><td align="justify">
+Agora vamos incluir os grupos de pessoas/profissionais 
+pertencentes ao nossos projeto. Clique no botão RECURSOS na 
+barra lateral. Depois clique no botão GRUPOS na barra de 
+ferramentas.
+<br><br>
+No formulário abaixo podemos inserir diversos tipos de grupo 
+de pessoas/profissionais em nosso projeto.
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project12.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project12.png" border="0" height="117" width="200"></a></td></tr>
+
+<tr><td align="justify"><br>
+Agora iremos definir os recursos do projeto. Os recursos são 
+definidos como recursos humanos e peças ou produtos. Veja no 
+exemplo abaixo como funciona o preenchimento dos recursos:
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project13.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project13.png" border="0" height="150" width="200"></a></td></tr>
+
+<tr><td align="justify"><br>
+Agora o mais importante, o preenchimento das tarefas do projeto. 
+As tarefas devem possuir ou não uma data de início, término, 
+executor e outras informações. Veja as tarefas de elaboração de 
+um artigo no exemplo abaixo:
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project14.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project14.png" border="0" height="150" width="200"></a></td></tr>
+
+<tr><td align="justify"><br>
+Uma tarefa deve possuir um título, duração, tempo de execução, 
+percentual concluído, prioridade, recursos alocados (humanos e 
+peças) e predecessores (tarefa anterior que obrigatoriamente deve estar concluída). 
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><img src="impressora.php_files/cabelo_project15.png" border="0" height="328" width="417"></td></tr>
+
+
+<tr><td class="centro"><img src="impressora.php_files/cabelo_project16.png" border="0" height="328" width="417"></td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project17.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project17.png" border="0" height="109" width="200"></a></td></tr>
+
+<tr><td align="justify"><br>
+Veja todo o cronograma preenchido: 
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project18.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project18.png" border="0" height="150" width="200"></a></td></tr>
+
+<tr><td align="justify"><br>
+Clique no botão  GRÁFICO DE GANTT da barra lateral para obtê-lo:
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project19.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project19.png" border="0" height="150" width="200"></a></td></tr>
+
+<tr><td align="justify"><br>
+No ítem VER do menu principal, selecione REALÇAR TAREFAS CRÍTICAS.
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><img src="impressora.php_files/cabelo_project20.png" border="0" height="196" width="177"></td></tr>
+
+<tr><td align="justify"><br>
+Veja o resultado:
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project21.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project21.png" border="0" height="150" width="200"></a></td></tr>
+
+<tr><td align="justify"><br>
+Ao clicar no botão IMPRIMIR na barra de ferramentas, podemos 
+selecionar quais informações devem ser impressas. Gráfico de 
+Gantt, todas as tarefas e os Recursos do projeto:
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project22.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project22.png" border="0" height="118" width="200"></a></td></tr>
+
+<tr><td align="justify"><br>
+Na aba impressão, podemos escolher a impressão direcionada para 
+as impressoras instaladas no sistema ou gera um PDF.
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project24.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project24.png" border="0" height="118" width="200"></a></td></tr>
+
+<tr><td align="justify"><br>
+As definições o formato de impressão e tamanho do papel podem ser definida na aba PAPEL.
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project25.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project25.png" border="0" height="118" width="200"></a></td></tr>
+
+<tr><td align="justify"><br>
+No botão PREVER IMPRESSÃO, podemos obter o preview de impressão, veja a figura abaixo:
+<br><br>
+</td></tr>
+
+<tr><td class="centro"><a href="http://www.vivaolinux.com.br/imagens/artigos/cabelo_project23.png" target="_new"><img src="impressora.php_files/thumb_cabelo_project23.png" border="0" height="150" width="190"></a></td></tr>
+
+<tr><td align="justify"><br>
+Este aplicativo é uma ferramenta indispensável para 
+desenvolvimento de sistema e qualquer outro tipo de projeto.
+<br><br>
+Seja Livre, USE A LINUX!!! 
+<br><br>
+</td></tr>
+
+<tr><td class="centro">
+<img src="impressora.php_files/term-12.jpg" height="240" width="320">
+</td></tr>
+</tbody></table>
+<br>
+</td></tr>
+
+
+<tr>
+  <td colspan="2"><hr noshade="noshade" size="1"></td>
+</tr>
+<tr><td colspan="2" class="centro">
+<u>http://www.vivaolinux.com.br/artigos/verArtigo.php?codigo=2231</u>
+<br><br>
+<a href="http://www.vivaolinux.com.br/artigos/verArtigo.php?codigo=2231">Voltar para o site</a>
+<br><br>
+</td></tr>
+</tbody></table>
+
+</body></html>

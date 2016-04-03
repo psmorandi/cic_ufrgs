@@ -1,0 +1,91 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="pt-br">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</head>
+
+<body>
+
+<h4 align="center"><font face="Tahoma">Universidade Federal do Rio Grande do Sul<br>
+Instituto de Informática - Departamento de Informática Aplicada<br>
+INF01002 - Protocolos de Comunicação<br>
+Professor: Lisando Granville</font></h4>
+<p align="left"><font face="Tahoma"><b>Alunos: </b>Andre Suslik Spritzer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Paulo 
+Sérgio Morandi Júnior</font></p>
+<h1 align="center"><font face="Tahoma">Trabalho 1: Descoberta da rede via 
+mensagens ICMP</font></h1>
+<h2 align="left"><font face="Tahoma">Introdução</font></h2>
+<p align="left"><font face="Tahoma">O trabalho desenvolvido consiste em uma 
+aplicação que faz a determinação dos computadores ativos de uma rede local 
+através do envio de uma mensagem ICMP Request para endereços IP de broadcast e 
+posterior contabilização dos pacotes ICMP Reply recebidos em resposta, de forma 
+que os computadores ativos são aqueles que responderem. Os IPs e nomes dos 
+equipamentos ativos descobertos são então exibidos.</font></p>
+<h2><font face="Tahoma">Código Fonte</font></h2>
+<p><font face="Tahoma">O trabalho foi desenvolvido na linguagem C e para Linux. 
+Ele pode ser obtido clicando <a href="ping.tar.gz">aqui</a>.</font></p>
+<h2><font face="Tahoma">Funcionamento da Aplicação</font></h2>
+<p><font face="Tahoma">O software inicialmente faz a criação do socket a ser 
+utilizado para então enviar a mensagem de ping ICMP em broadcast. Ele, então, 
+espera as respostas, exibindo ao usuário os endereços IP e os nomes das máquinas 
+conforme elas forem respondendo ao ping. Caso a máquina não tenha um nome (hostname), 
+o IP é mostrado duas vezes.</font></p>
+<h2><font face="Tahoma">Projeto da Implementação</font></h2>
+<p><font face="Tahoma">As principais funções da aplicação são:</font></p>
+<p><font face="Tahoma"><b>setup_socket.</b> Criação e configuração do socket. 
+Testa se o sistema tem o protocolo ICMP implementado. Se tiver, verifica se o 
+sistema permite a criação de um RAW SOCKET e o cria. O socket é então 
+configurado para mensagens de broadcast e o endereço de broadcast (INADDR_BROADCAST) 
+é colocado como endereço de destino.</font></p>
+<p><font face="Tahoma"><b>ping_send.</b> Envio da mensagem de ping. É criado o 
+pacote ICMP para mandar a mensagem ICMP_ECHO_REQUEST e então feito o checksum. 
+Após isso, a mensagem é enviada em broadcast.</font></p>
+<p><font face="Tahoma"><b>ping_recv.</b> Recebe as respostas, exibindo nome do 
+host e IPs das máquinas que as enviarem. Dentro de um loop, primeiramente é 
+recebida uma mensage. Então, é calculado o checksum do pacote recebido, o qual é 
+descartado se o checksum for diferente de 0 (sinal de que foi enviado algo com 
+erro) ou se não for uma mensagem ICMP ECHO REPLY. São então exibidos o nome do 
+host e o IP, os quais são obtidos através das funções auxiliares <b>
+get_host_name </b>e <b>get_ip_addr</b> respectivamente.</font></p>
+<p><font face="Tahoma"><b>get_host_name.</b> Retorna em forma de string o nome 
+do host dado um sockaddr_in.</font></p>
+<p><font face="Tahoma"><b>get_ip_addr.</b> Retorna o IP como string.</font></p>
+<h2><font face="Tahoma">Dificuldades Encontradas</font></h2>
+<p><font face="Tahoma">Não foram encontradas grandes dificuldades no 
+desenvolvimento do trabalho. Entretanto, tivemos alguns problemas para 
+determinar quais funções do socket utilizar (por ser a primeira vez que 
+trabalhamos efetivamente com o socket) e fazer o debug do que estava dando 
+errado. Também tivemos um pouco de dificuldade para montar o pacote ICMP de 
+forma correta.</font></p>
+<h2><font face="Tahoma">Conclusão</font></h2>
+<p><font face="Tahoma">A técnica utilizada neste trabalho é uma forma bastante 
+eficiente de fazer a descoberta dos computadores que estão em uma rede local. 
+Sua implementação é relativamente simples e a execução é rápida.</font></p>
+<h2><font face="Tahoma">Bibiliografia Utilizada</font></h2>
+<ul>
+	<li>
+	<p class="MsoNormal"><span style="font-family: MS Sans Serif; color: black">
+	IP, Internet Protocol: </span><u>
+	<span style="font-family: MS Sans Serif; color: blue">
+	<a style="color: blue; text-decoration: underline; text-underline: single" href="http://www.networksorcery.com/enp/protocol/ip.htm">
+	http://www.networksorcery.com/enp/protocol/ip.htm</a></span></u></li>
+	<li>
+	<p class="MsoNormal"><span style="font-family: MS Sans Serif; color: black">
+	RFC 1256 (ICMP): </span><u>
+	<span style="font-family: MS Sans Serif; color: blue">
+	<a style="color: blue; text-decoration: underline; text-underline: single" href="http://www.ietf.org/rfc/rfc1256.txt?number=1256">
+	http://www.ietf.org/rfc/rfc1256.txt?number=1256</a></span></u></li>
+	<li>
+	<p class="MsoNormal"><span style="font-family: MS Sans Serif; color: black">
+	Matthew, Neil.&nbsp;&nbsp;&nbsp; Beginning linux programming.&nbsp;&nbsp; 2nd ed.</span></li>
+	<li>
+	<p class="MsoNormal"><span style="font-family: MS Sans Serif; color: black">
+	Stevens, W. Richard.&nbsp;&nbsp;&nbsp; Unix network programming.</span></li>
+</ul>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

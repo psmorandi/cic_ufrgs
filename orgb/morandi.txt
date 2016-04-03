@@ -1,0 +1,59 @@
+#########################################################
+# PsMj - FreeSoftware (c) 2001-2003, PSMJ(TM) Corporation
+# 	AD - AssemblerDepartament (R)
+#		MPIS project - INF01113
+# Aluno: Paulo Sérgio Morandi Júnior
+# Mat..: 2767/01-1
+# Prof.: Flávio Wagner
+#
+#########################################################
+
+#----------------------------------------------
+# Os dados segem o seguinte modelo:
+# "VAR" = "registrador onde será carregado"
+#
+# produto       = $2
+# contador      = $3
+# multiplicando = $4
+# multiplicador = $5
+# aux           = $6
+# base de end.  = $7
+# mascara	= $8
+#----------------------------------------------
+
+.text
+.globl main
+
+main:
+	#-----Leitura dos dados da memória----#
+	lui   $7, 0x1000		# Carregando registrador base
+	lw    $4, 0x1000($7)
+	lw    $5, 0x1004($7)
+	addi  $8, $0, 0x4000		# Carregando Máscara
+	sll   $8, $8, 17		# 0x80000000
+	
+	#---Inicio efetivo do programa--------#
+	add   $2, $0, $0  	# produto = 0;
+	addi  $3, $0, 32 	# contador = 32;
+laco:
+	and   $6, $5, $8 	#(Bit 31 == 0)? Sim, vá para DESLOCA...
+	beq   $6, $0, desloca	# 
+	add   $2, $2, $4 	# produto = produto + multiplicando;
+desloca:
+	sll   $5, $5, 1		# Desloca multiplicador 1 bit para esquerda
+	addi  $3, $3, -1	# contador--
+	blez $3,fim 		# (contador == 0)? Sim, termina programa...
+	sll   $2, $2, 1		# Desloca produto 1 bit para esquerda
+	j laco			# Volta para laco
+fim:
+	sw    $2, 0x1008($7)	# MEM[produto]="resultado final"
+	
+	li    $v0, 10		# Sai do programa
+	syscall			# 
+
+
+#----O segmento de dados inicia em 0x10001000
+.data 0x10001000
+multiplicando:	.word 10 # 
+multiplicador:	.word 12 # multiplicando x multiplador = produto   
+produto:	.word 0 #
