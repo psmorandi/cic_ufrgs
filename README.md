@@ -1,7 +1,7 @@
 # cic_ufrgs
 All my works done at UFRGS as BSc Computer Science student.
 
-pt-BR (copy and past of an really old webpage):
+pt-BR (copy and past of a really old webpage):
 
 # TRABALHOS
 
